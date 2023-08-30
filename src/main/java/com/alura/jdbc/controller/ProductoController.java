@@ -12,33 +12,38 @@ import java.util.List;
 import java.util.Map;
 
 import com.alura.jdbc.factory.ConnectionFactory;
+import com.alura.jdbc.modelo.Categoria;
 import com.alura.jdbc.modelo.producto;
 import com.alura.jdbc.persistencia.ProductoDAO;
 
 public class ProductoController {
 
-	private ProductoDAO preductoDAO;
+	private ProductoDAO productoDAO;
 
 	public ProductoController() {
-		this.preductoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());
+		this.productoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());
 	}
 
 	public int modificar(String nombre, String descripcion, Integer id, Integer cantidad) {
-		return preductoDAO.modificar(nombre, descripcion, id, cantidad);
+		return productoDAO.modificar(nombre, descripcion, id, cantidad);
 
 		
 	}
 
 	public int eliminar(Integer id) {
-		return preductoDAO.eliminar(id);
+		return productoDAO.eliminar(id);
 	}
 
 	public List<producto> listar()  {
-		return preductoDAO.listar();
+		return productoDAO.listar();
 	}
 
-	public void guardar(producto producto)  {
-		ProductoDAO productoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());
+	public List<producto> listar(Categoria categoria) {
+		return productoDAO.listar(categoria.getId());
+	}
+
+	public void guardar(producto producto, Integer categoriaId)  {
+		producto.setCategoriaId(categoriaId);
 		productoDAO.guardar(producto);
 	}
 }

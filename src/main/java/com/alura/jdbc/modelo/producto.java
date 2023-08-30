@@ -5,6 +5,7 @@ public class producto {
     private String nombre;
     private String descripcion;
     private Integer cantidad;
+    private Integer categoriaId;
 
     public producto(String nombre, String descripcion, Integer cantidad) {
         this.nombre = nombre;
@@ -34,9 +35,17 @@ public class producto {
     public Integer getId() {
         return this.id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCategoriaId() {
+        return this.categoriaId;
+    }
+
+    public void setCategoriaId(Integer categoriaId) {
+        this.categoriaId = categoriaId;
     }
 
 
